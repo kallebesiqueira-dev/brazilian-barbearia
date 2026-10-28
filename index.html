@@ -16,12 +16,12 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="Brazilian Barbearia — Paulo Afonso, BA">
   <meta property="og:description" content="Cuidado nos detalhes, técnica no corte e atendimento de verdade em Paulo Afonso. Rua Manoel Novais, 600.">
-  <meta property="og:image" content="img/entrada.jpeg">
+  <meta property="og:image" content="img/hero-bg.jpg">
   <meta property="og:locale" content="pt_BR">
   <meta name="twitter:card" content="summary_large_image">
 
   <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
-  <link rel="preload" as="image" href="img/salao.jpeg" fetchpriority="high">
+  <link rel="preload" as="image" href="img/hero-bg.jpg" fetchpriority="high">
 
   <!-- Fontes: Anton (display) + Archivo (texto) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -84,7 +84,8 @@
     <!-- ============ SEÇÃO 1 — HERO ============ -->
     <section class="hero" id="inicio" aria-label="Apresentação">
       <div class="hero__media" aria-hidden="true">
-        <img src="img/salao.jpeg" alt="" width="732" height="1280" fetchpriority="high">
+        <!-- imagem oficial do hero (contém o logotipo); original em img/hero.png -->
+        <img src="img/hero-bg.jpg" alt="" width="1672" height="941" fetchpriority="high">
         <div class="hero__scrim"></div>
       </div>
       <!-- Título mantido invisível para SEO e leitores de tela -->
@@ -241,7 +242,6 @@
             <p class="location__street">Rua Manoel Novais, 600</p>
             <p class="location__city">Paulo Afonso — Bahia, Brasil</p>
           </address>
-          <a class="btn btn--solid" id="mapsLink" href="https://www.google.com/maps/search/?api=1&amp;query=Rua%20Manoel%20Novais%2C%20600%2C%20Paulo%20Afonso%2C%20BA%2C%20Brasil" target="_blank" rel="noopener noreferrer">Abrir no Google Maps</a>
           <div class="location__extra" id="locationHours" hidden>
             <!-- Horários exibidos quando confirmados em js/config.js. -->
           </div>
@@ -249,10 +249,13 @@
             <!-- Telefone exibido quando confirmado em js/config.js. -->
           </div>
         </div>
-        <figure class="section__figure section__figure--square">
-          <img src="img/entrada.jpeg" alt="Entrada da Brazilian Barbearia com balcão preto e logotipo em branco e amarelo." width="960" height="1280" loading="lazy">
-          <figcaption>A entrada da Brazilian Barbearia.</figcaption>
-        </figure>
+        <div class="section__map">
+          <iframe
+            title="Mapa: Rua Manoel Novais, 600, Paulo Afonso — BA"
+            src="https://www.google.com/maps?q=Rua%20Manoel%20Novais%2C%20600%2C%20Paulo%20Afonso%2C%20BA%2C%20Brasil&amp;output=embed"
+            width="600" height="450" loading="lazy" allowfullscreen
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
       </div>
     </section>
 
@@ -265,13 +268,11 @@
         <a class="btn btn--solid" id="bookingLink" href="#" target="_blank" rel="noopener noreferrer">Agendar horário</a>
       </div>
     </section>
-  </main>
-
-  <!-- ============ SEÇÃO 9 — CONTATO E RODAPÉ ============ -->
+  <!-- ============ CONTATO E RODAPÉ (dentro de main: sobe por último sobre a Localização) ============ -->
   <footer class="footer" id="contato">
     <div class="footer__inner">
       <div class="footer__brand">
-        <p class="footer__logo">Brazilian <span>Barbearia</span></p>
+        <img class="footer__logo-img" src="img/logo.jpeg" alt="Logotipo da Brazilian Barbearia" width="637" height="499" loading="lazy">
         <address class="footer__address">
           Rua Manoel Novais, 600<br>
           Paulo Afonso — Bahia, Brasil
@@ -303,6 +304,7 @@
     </div>
     <p class="footer__copy">© <span id="year">2026</span> Brazilian Barbearia — Paulo Afonso, BA. Todos os direitos reservados.</p>
   </footer>
+  </main>
 
   <!-- Lightbox da galeria -->
   <dialog class="lightbox" id="lightbox" aria-label="Imagem ampliada">

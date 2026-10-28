@@ -70,7 +70,7 @@ Quando o domínio oficial existir, atualize em 4 lugares:
 ## 7. Fotografias e vídeos
 
 - As imagens vivem em `img/`. **Não renomeie os arquivos existentes** sem atualizar os caminhos em `index.html` e `js/products.js`.
-- Hero usa `img/salao.jpeg`; Sobre usa `img/carlos.jpeg`; Localização/galeria usam `img/entrada.jpeg`; galeria usa os pares `antes*/depois*` e `video trabalho.mp4`.
+- Hero usa `img/hero-bg.jpg` (versão web otimizada, 211 KB, gerada do original `img/hero.png` com a arte oficial do logotipo); o rodapé usa `img/logo.jpeg` com `mix-blend-mode: screen` (o fundo escuro do JPEG some sobre o verde). Sobre usa `img/carlos.jpeg`; a galeria usa os pares `antes*/depois*` e `video trabalho.mp4`; a Localização exibe um mapa incorporado do Google Maps (sem chave de API, via `output=embed`).
 - Para trocar uma foto, substitua o arquivo mantendo o nome, ou atualize o `src` + atributos `width`/`height` correspondentes (eles evitam layout shift).
 - Vídeos: use MP4 curto, `preload="metadata"`, nunca autoplay com áudio.
 
