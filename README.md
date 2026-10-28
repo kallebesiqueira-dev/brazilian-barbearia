@@ -2,10 +2,30 @@
 
 Landing page premium da **Brazilian Barbearia** — Rua Manoel Novais, 600, Paulo Afonso, Bahia, Brasil. À frente do atendimento está **Carlos**, barbeiro com mais de 3 anos de experiência.
 
+![Hero no desktop](docs/screenshots/hero-desktop.jpg)
+
+## Screenshots
+
+| Desktop | Mobile |
+|---|---|
+| ![Cardápio de preços](docs/screenshots/cardapio.jpg) | ![Cardápio no celular](docs/screenshots/cardapio-mobile.jpg) |
+| ![Galeria antes/depois](docs/screenshots/galeria.jpg) | ![Hero no iPhone — logotipo completo sobreposto](docs/screenshots/hero-mobile.jpg) |
+
+| | |
+|---|---|
+| ![Sobre](docs/screenshots/sobre.jpg) | ![Diferenciais](docs/screenshots/diferenciais.jpg) |
+| ![Vitrine de produtos](docs/screenshots/vitrine.jpg) | ![Localização com mapa](docs/screenshots/localizacao.jpg) |
+
+![Rodapé](docs/screenshots/footer.jpg)
+
+As capturas vivem em `docs/screenshots/` (JPEG ~80% de qualidade, geradas via Playwright/Chromium em 1280×800 e 390×720\@2x). Regenere-as após mudanças visuais relevantes.
+
 ## 1. Objetivos e funcionalidades
 
 - Apresentar a barbearia com identidade visual própria (verde profundo, preto, branco e amarelo de destaque).
 - Scroll storytelling cinematográfico: **cada seção fixa na tela e a seguinte sobe de baixo para cima por cima dela** (deck de painéis via CSS `position: sticky` + ajuste JS para seções altas + animações GSAP).
+- Ritmo visual alternado: painéis **verde → preto → verde…** até o rodapé (verde) e títulos em **zigue-zague** (seção ímpar à esquerda, par à direita via `section--right`; na Localização o mapa troca de coluna com o texto).
+- **Cardápio de preços** (seção 04): moldura dupla dourada estilo cardápio de parede, itens com linha pontilhada entre nome e preço — dados vindos de `js/config.js`.
 - Galeria de transformações reais: carrossel de fotos **redondas** antes/depois (scroll-snap + botões), vídeo e foto do ambiente em formato quadrado, lightbox acessível.
 - **Vitrine de produtos** gerada a partir das fotografias reais da pasta `img/`.
 - SEO local para Paulo Afonso e região (metadados, JSON-LD `BarberShop`, sitemap, robots).
@@ -36,7 +56,9 @@ Sem frameworks, sem bundler, sem dependências npm: abra e publique como arquivo
 ├── pages/                  # terms.html, privacy.html, cookies.html
 ├── img/                    # fotografias reais (produtos, galeria, ambiente)
 ├── assets/icons/           # favicon.svg
+├── docs/screenshots/       # capturas usadas neste README
 ├── robots.txt / sitemap.xml
+├── LICENSE                 # MIT (código) — fotos e marca pertencem à barbearia
 └── README.md
 ```
 
@@ -70,7 +92,7 @@ Quando o domínio oficial existir, atualize em 4 lugares:
 ## 7. Fotografias e vídeos
 
 - As imagens vivem em `img/`. **Não renomeie os arquivos existentes** sem atualizar os caminhos em `index.html` e `js/products.js`.
-- Hero usa `img/hero-bg.jpg` (versão web otimizada, 211 KB, gerada do original `img/hero.png` com a arte oficial do logotipo); o rodapé usa `img/logo.jpeg` com `mix-blend-mode: screen` (o fundo escuro do JPEG some sobre o verde). Sobre usa `img/carlos.jpeg`; a galeria usa os pares `antes*/depois*` e `video trabalho.mp4`; a Localização exibe um mapa incorporado do Google Maps (sem chave de API, via `output=embed`).
+- Hero usa `img/hero-bg.jpg` (versão web otimizada, 211 KB, gerada do original `img/hero.png` com a arte oficial do logotipo). Em telas ≤ 760 px a arte horizontal não cabe (o `cover` mostra ~1/4 da largura e cortaria o letreiro): o CSS desloca a foto para o lado da cadeira e sobrepõe `img/logo.jpeg` completo com `mix-blend-mode: screen` — o mesmo logotipo/técnica usados no rodapé (o fundo escuro do JPEG some sobre o verde). Sobre usa `img/carlos.jpeg`; a galeria usa os pares `antes*/depois*` e `video trabalho.mp4`; a Localização exibe um mapa incorporado do Google Maps (sem chave de API, via `output=embed`).
 - Para trocar uma foto, substitua o arquivo mantendo o nome, ou atualize o `src` + atributos `width`/`height` correspondentes (eles evitam layout shift).
 - Vídeos: use MP4 curto, `preload="metadata"`, nunca autoplay com áudio.
 
@@ -114,9 +136,22 @@ Os rótulos nas fotografias **não exibem preço impresso**. Os valores publicad
 
 **Pendência:** a variante exata da pasta da linha verde (`ppasta p25 g35.jpeg`) está parcialmente ilegível na foto ("fixação extra forte") — marcada com `needsReview: true`. Confirmar nome completo e preços com o proprietário.
 
-## 9. Serviços (seção desativada)
+## 9. Serviços — cardápio de preços
 
-A seção de serviços foi **removida da página a pedido do proprietário** (out/2026). A estrutura de dados (`services` em `js/config.js`) e o renderizador em `js/main.js` foram preservados: para reativar, basta recriar a `<section id="servicos">` com um `<div id="servicesGrid">` e preencher a lista no config — nenhum serviço deve ser inventado.
+Reativada em 28/10/2026 com os **valores confirmados pelo proprietário**, em formato de cardápio (seção `#servicos`, "04 — Tabela de preços"):
+
+| Serviço | Preço |
+|---|---|
+| Cabelo Adulto | R$ 30,00 |
+| Cabelo Criança | R$ 30,00 |
+| Barba | R$ 25,00 |
+| Pezinho | R$ 10,00 |
+| Sobrancelha | R$ 10,00 |
+| Combo Cabelo + Barba | R$ 50,00 |
+
+- Os dados vivem em **`js/config.js`** (`services: [{ name, price, description? }]`); `js/main.js` renderiza cada item como linha do cardápio (nome + pontilhado + preço; `description` vira uma linha menor abaixo, se existir).
+- Se a lista ficar vazia, a moldura some e um aviso honesto aparece no lugar (`#servicesEmpty`).
+- Ao alterar a faixa de valores, atualize também o `priceRange` no JSON-LD do `index.html` (hoje `R$ 10,00 - R$ 50,00`).
 
 ## 10. Animações GSAP
 
@@ -151,7 +186,7 @@ Nenhuma URL foi inventada; não há formulário simulando reservas.
 
 ## 14. Checklist de informações a fornecer pelo proprietário
 
-- [ ] Lista de serviços com preços e duração
+- [x] Lista de serviços com preços (28/10/2026) — duração ainda pendente
 - [ ] Horários de funcionamento
 - [ ] Telefone / WhatsApp
 - [ ] Instagram e outros perfis
@@ -182,17 +217,18 @@ Nenhuma URL foi inventada; não há formulário simulando reservas.
   Correções aplicadas durante a auditoria: banner de cookies exibido via `transform`/`opacity` (eliminou CLS de 0,168), preload da imagem do hero (LCP 3,0 s → 2,0 s) e contraste do copyright do rodapé.
 - Layout responsivo construído com `clamp()` e grids `auto-fill` para 320–1440 px; recomenda-se conferência visual nas larguras-alvo após alterações de conteúdo.
 - Reexecute o Lighthouse na URL pública após a hospedagem (resultados locais são aproximações).
+- **Revisão visual via Playwright/Chromium (28/10/2026)**, após cardápio + alternância de cores + zigue-zague: zero erros de console, zero requisições falhas; capturas de todas as seções em desktop (1280×800) e mobile (390×720@2x) — ver `docs/screenshots/`. Correções de mobile validadas: logotipo completo sobreposto no hero (iPhone) e botão Fechar do lightbox dentro da área visível (`svh` em vez de `vh`).
 
 ## 17. Limitações conhecidas
 
 - Imagens servidas em JPEG original (sem variantes WebP/AVIF geradas — otimização futura recomendada; tamanhos atuais são moderados, 100–230 KB).
 - Páginas legais aguardam dados cadastrais do proprietário.
-- Seção de serviços aguarda confirmação de preços.
+- Durações dos serviços ainda não informadas (cardápio exibe apenas nome + preço).
 
 ## 18. Checklist de publicação
 
 - [ ] Definir domínio e aplicar seção 6
-- [ ] Preencher serviços e contatos em `js/config.js`
+- [x] Preencher serviços em `js/config.js` (28/10/2026) — horários/telefone ainda pendentes
 - [ ] Confirmar produto pendente (`needsReview`)
 - [ ] Ativar GitHub Pages (ou outro host)
 - [ ] Rodar Lighthouse na URL pública e registrar resultados
@@ -204,3 +240,7 @@ Nenhuma URL foi inventada; não há formulário simulando reservas.
 - Commits pequenos e com prefixo convencional: `feat:`, `fix:`, `docs:`, `test:`, `chore:`.
 - Edite dados do negócio apenas em `js/config.js` e `js/products.js` — nunca direto no HTML.
 - Antes de commitar: abra o site localmente e confira console limpo + vitrine renderizada.
+
+## 20. Licença
+
+O código está sob a **licença MIT** — © 2026 [Kallebe Gallo](https://github.com/kallebesiqueira-dev) (ver [`LICENSE`](LICENSE)). As fotografias, os vídeos e a marca/arte "Brazilian Barbearia" pertencem à barbearia e **não** são cobertos pela licença do código.
