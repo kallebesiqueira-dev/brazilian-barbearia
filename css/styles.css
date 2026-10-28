@@ -229,7 +229,11 @@ body::after {
     transition: transform 0.25s ease, opacity 0.25s ease, visibility 0.25s;
   }
   .nav__menu a { display: block; padding: 0.9rem 1.5rem; }
-  .nav__menu .nav__cta { margin: 0.6rem 1.5rem 0; text-align: center; }
+  .nav__menu .nav__cta {
+    margin: 0.6rem 1.5rem 0;
+    text-align: center;
+    width: fit-content; /* largura do texto, não a tela toda */
+  }
   .nav--open .nav__menu {
     transform: translateY(0);
     opacity: 1;
@@ -570,9 +574,13 @@ body::after {
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(242, 201, 76, 0.5) transparent;
+  /* arraste livre com o dedo, sem barra de rolagem visível */
+  scrollbar-width: none;
+  /* disfarce do corte: as fotos somem num fade nas laterais */
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 2.5rem, #000 calc(100% - 2.5rem), transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0, #000 2.5rem, #000 calc(100% - 2.5rem), transparent 100%);
 }
+.carousel__track::-webkit-scrollbar { display: none; }
 
 .carousel__item {
   flex: none;
