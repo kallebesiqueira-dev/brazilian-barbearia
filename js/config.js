@@ -20,8 +20,8 @@ window.SITE_CONFIG = {
 
   /* Canais de contato — exibidos somente quando preenchidos.
      whatsapp: use apenas números, com DDI/DDD. Ex.: "5575999990000" */
-  whatsapp: "",
-  instagram: "",   // Ex.: "https://instagram.com/perfil-oficial"
+  whatsapp: "5575987011691",
+  instagram: "https://instagram.com/barbeariabrazilian_",
   phone: "",       // Ex.: "(75) 99999-0000"
 
   /* Horários de funcionamento — exibidos na seção Localização quando

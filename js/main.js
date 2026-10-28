@@ -203,18 +203,24 @@
   /* ---------- redes sociais (exibidas só quando confirmadas) ---------- */
   var socialList = document.getElementById("socialLinks");
   if (socialList) {
-    function addSocial(label, href) {
+    function addSocial(label, href, icon) {
       var li = document.createElement("li");
       var a = document.createElement("a");
       a.href = href;
-      a.textContent = label;
       a.target = "_blank";
       a.rel = "noopener noreferrer";
+      var img = document.createElement("img");
+      img.src = icon;
+      img.alt = label;
+      img.width = 96;
+      img.height = 96;
+      img.loading = "lazy";
+      a.appendChild(img);
       li.appendChild(a);
       socialList.appendChild(li);
     }
-    if (CONFIG.instagram) addSocial("Instagram", CONFIG.instagram);
-    if (CONFIG.whatsapp) addSocial("WhatsApp", "https://wa.me/" + CONFIG.whatsapp);
+    if (CONFIG.instagram) addSocial("Instagram", CONFIG.instagram, "img/insta-icon.png");
+    if (CONFIG.whatsapp) addSocial("WhatsApp", "https://wa.me/" + CONFIG.whatsapp, "img/whatsapp-icon.png");
   }
 
   /* ---------- ano dinâmico no rodapé ---------- */

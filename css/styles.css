@@ -914,15 +914,14 @@ body::after {
   display: flex;
   gap: var(--space-2);
 }
-.footer__social a {
-  text-decoration: none;
-  font-weight: 700;
-  font-size: 0.85rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--yellow);
+.footer__social a { display: block; }
+.footer__social img {
+  width: 44px;
+  height: 44px;
+  display: block;
+  transition: transform 0.2s ease;
 }
-.footer__social a:hover { text-decoration: underline; }
+.footer__social a:hover img { transform: translateY(-3px) scale(1.08); }
 
 .footer__heading {
   font-size: 0.78rem;
