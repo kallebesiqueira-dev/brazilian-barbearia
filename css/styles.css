@@ -813,16 +813,16 @@ body::after {
 
 .feature {
   width: clamp(170px, 22vw, 210px);
-  aspect-ratio: 1 / 1;
+  /* altura acompanha o conteúdo — sem vazio em cima/embaixo */
   flex: none;
-  padding: 1.5rem 1.6rem;
+  padding: 1.1rem 1.4rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
   border: 1px solid var(--line);
-  border-radius: 30%; /* cantos a 30% em cima e embaixo */
+  border-radius: 2.2rem; /* curvas acentuadas em cima e embaixo */
   background: rgba(255, 255, 255, 0.03);
   transition: border-color 0.25s ease;
   overflow: hidden;
