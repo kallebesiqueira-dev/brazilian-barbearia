@@ -822,7 +822,8 @@ body::after {
   align-items: center;
   text-align: center;
   border: 1px solid var(--line);
-  border-radius: 2.2rem; /* curvas acentuadas em cima e embaixo */
+  /* formato folha: só o canto superior direito e o inferior esquerdo curvos */
+  border-radius: 0 40% 0 40%;
   background: rgba(255, 255, 255, 0.03);
   transition: border-color 0.25s ease;
   overflow: hidden;
