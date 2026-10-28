@@ -1,0 +1,10 @@
+# Brazilian Barbearia — robots.txt
+# Permite rastreamento de todo o site público.
+
+User-agent: *
+Allow: /
+
+# Páginas legais têm meta robots noindex e seguem acessíveis aos robôs.
+
+# Quando o domínio oficial for definido, descomente e ajuste:
+# Sitemap: https://SEU-DOMINIO/sitemap.xml
