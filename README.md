@@ -114,17 +114,9 @@ Os rótulos nas fotografias **não exibem preço impresso**. Os valores publicad
 
 **Pendência:** a variante exata da pasta da linha verde (`ppasta p25 g35.jpeg`) está parcialmente ilegível na foto ("fixação extra forte") — marcada com `needsReview: true`. Confirmar nome completo e preços com o proprietário.
 
-## 9. Serviços (editáveis)
+## 9. Serviços (seção desativada)
 
-A lista de serviços é **intencionalmente vazia** até o proprietário confirmar nomes e valores (nenhum serviço foi inventado). Para publicar, edite `services` em `js/config.js`:
-
-```js
-services: [
-  { name: "Corte masculino", description: "Máquina e tesoura", price: "R$ 0,00" }
-]
-```
-
-Enquanto vazia, a seção exibe um aviso honesto com o endereço para consulta.
+A seção de serviços foi **removida da página a pedido do proprietário** (out/2026). A estrutura de dados (`services` em `js/config.js`) e o renderizador em `js/main.js` foram preservados: para reativar, basta recriar a `<section id="servicos">` com um `<div id="servicesGrid">` e preencher a lista no config — nenhum serviço deve ser inventado.
 
 ## 10. Animações GSAP
 

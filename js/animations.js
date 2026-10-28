@@ -39,17 +39,16 @@
 
       var isMobile = context.conditions.mobile;
 
-      /* ---- hero: recua e escurece enquanto o painel Sobre sobe ---- */
-      var heroInner = document.querySelector(".hero__inner");
+      /* ---- hero: leve zoom e recuo da foto enquanto o painel Sobre sobe ---- */
+      var heroMedia = document.querySelector(".hero__media img");
       var firstPanel = document.querySelector(".panel");
-      if (heroInner && firstPanel) {
+      if (heroMedia && firstPanel) {
         gsap.fromTo(
-          heroInner,
-          { opacity: 1, scale: 1, yPercent: 0 },
+          heroMedia,
+          { scale: 1, filter: "brightness(1)" },
           {
-            opacity: 0.15,
-            scale: isMobile ? 1 : 0.95,
-            yPercent: -6,
+            scale: isMobile ? 1.04 : 1.08,
+            filter: "brightness(0.55)",
             ease: "none",
             scrollTrigger: {
               trigger: firstPanel,
@@ -86,7 +85,8 @@
       });
 
       /* ---- grades de cards: stagger de baixo para cima ---- */
-      [".services", ".products", ".features", ".carousel__track", ".gallery-squares"].forEach(function (selector) {
+      /* .features fica de fora: o marquee contínuo já cuida do movimento */
+      [".products", ".carousel__track", ".gallery-squares"].forEach(function (selector) {
         var grid = document.querySelector(selector);
         if (!grid || !grid.children.length) return;
         gsap.fromTo(

@@ -38,6 +38,25 @@
     window.addEventListener("load", updateStackedPanels);
   }
 
+  /* ---------- marquee contínuo dos diferenciais ----------
+     Duplica o grupo de cards (cópia decorativa, aria-hidden) para que a
+     animação CSS translateX(-100%) feche um loop perfeito. Sem JS, os
+     cards ficam estáticos e visíveis. */
+  var marquee = document.getElementById("featuresMarquee");
+  if (marquee) {
+    var group = marquee.querySelector(".marquee__group");
+    if (group) {
+      /* clona até cobrir a tela sem vão: (cópias-1) × larguraGrupo >= viewport */
+      var copies = Math.min(6, Math.ceil(window.innerWidth / group.offsetWidth) + 1);
+      for (var c = 1; c < Math.max(2, copies); c++) {
+        var clone = group.cloneNode(true);
+        clone.setAttribute("aria-hidden", "true");
+        marquee.appendChild(clone);
+      }
+      marquee.classList.add("marquee--on");
+    }
+  }
+
   /* ---------- carrossel antes/depois ---------- */
   var carouselTrack = document.getElementById("carouselTrack");
   var carouselPrev = document.getElementById("carouselPrev");
