@@ -714,25 +714,25 @@ body::after {
   margin-inline: auto;
 }
 
+/* estilo marketplace: a caixinha envolve só a imagem; nome e preço ficam fora */
 .product-card {
   width: clamp(140px, 26vw, 200px);
   display: flex;
   flex-direction: column;
-  border: 1px solid var(--line);
-  border-radius: var(--radius-card);
-  overflow: hidden;
-  background: linear-gradient(180deg, rgba(18, 59, 42, 0.35), rgba(16, 16, 16, 0.6));
-  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-}
-.product-card:hover {
-  transform: translateY(-6px);
-  border-color: rgba(242, 201, 76, 0.55);
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
 }
 
 .product-card__media {
   aspect-ratio: 1 / 1;
   overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  background: linear-gradient(180deg, rgba(18, 59, 42, 0.35), rgba(16, 16, 16, 0.6));
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.product-card:hover .product-card__media {
+  transform: translateY(-6px);
+  border-color: rgba(242, 201, 76, 0.55);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
 }
 .product-card__media img {
   width: 100%; height: 100%;
@@ -742,42 +742,39 @@ body::after {
 .product-card:hover .product-card__media img { transform: scale(1.05); }
 
 .product-card__body {
-  padding: 0.7rem 0.8rem 0.9rem;
+  padding: 0.6rem 0.15rem 0;
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
-  flex: 1;
+  gap: 0.25rem;
 }
 .product-card__name {
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-size: 0.82rem;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-  line-height: 1.25;
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--ink-soft);
 }
-.product-card__desc { display: none; } /* caixas compactas: só nome e preço */
+.product-card__desc { display: none; } /* compacto: só nome e preço */
 .product-card__prices {
-  margin-top: auto;
-  padding-top: 0.4rem;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.3rem 0.9rem;
+  align-items: baseline;
+  gap: 0.2rem 0.9rem;
 }
 .product-card__price {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 0.3rem;
   line-height: 1.2;
 }
 .product-card__price-label {
-  font-size: 0.58rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--white);
 }
 .product-card__price-value {
   font-weight: 700;
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: var(--yellow);
 }
 
@@ -872,7 +869,7 @@ body::after {
 .footer {
   position: relative;
   z-index: 2;
-  background: var(--green-dark);
+  background: var(--black);
   border-top: 1px solid rgba(242, 201, 76, 0.25);
   border-radius: var(--radius-panel) var(--radius-panel) 0 0;
   box-shadow: 0 -30px 60px rgba(0, 0, 0, 0.55);
@@ -894,8 +891,11 @@ body::after {
 /* logotipo no rodapé: blend "screen" apaga o fundo escuro do JPEG,
    deixando a marca nítida sobre o verde do rodapé */
 .footer__logo-img {
-  width: min(220px, 60vw);
-  height: auto;
+  width: 120px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 1px solid rgba(242, 201, 76, 0.4);
   mix-blend-mode: screen;
   filter: contrast(1.06) saturate(1.05);
 }
@@ -962,7 +962,17 @@ body::after {
   border-top: 1px solid var(--line);
   font-size: 0.82rem;
   color: rgba(255, 255, 255, 0.72);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
 }
+.footer__dev a {
+  color: var(--yellow);
+  font-weight: 600;
+  text-decoration: none;
+}
+.footer__dev a:hover { text-decoration: underline; }
 
 /* ---------- Banner de cookies ---------- */
 /* O banner fica sempre renderizado, mas fora da tela: exibir via
