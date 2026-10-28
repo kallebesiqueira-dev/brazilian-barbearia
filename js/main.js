@@ -223,6 +223,14 @@
     if (CONFIG.whatsapp) addSocial("WhatsApp", "https://wa.me/" + CONFIG.whatsapp, "img/whatsapp-icon.png");
   }
 
+  /* ---------- vídeo da galeria: contínuo, mas respeita movimento reduzido ---------- */
+  var galleryVideo = document.querySelector(".gallery__item--video video");
+  if (galleryVideo && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    galleryVideo.removeAttribute("autoplay");
+    galleryVideo.pause();
+    galleryVideo.setAttribute("controls", "");
+  }
+
   /* ---------- ano dinâmico no rodapé ---------- */
   var year = document.getElementById("year");
   if (year) year.textContent = String(new Date().getFullYear());
