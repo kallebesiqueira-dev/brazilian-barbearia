@@ -10,3 +10,5 @@ desktop.ini
 # Dependências e temporários (o site não usa build, mas por segurança)
 node_modules/
 *.log
+
+.vercel
