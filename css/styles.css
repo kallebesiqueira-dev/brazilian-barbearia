@@ -974,6 +974,14 @@ body::after {
 }
 .footer__dev a:hover { text-decoration: underline; }
 
+@media (max-width: 760px) {
+  .footer__copy {
+    justify-content: center;
+    text-align: center;
+  }
+  .footer__dev { width: 100%; text-align: center; }
+}
+
 /* ---------- Banner de cookies ---------- */
 /* O banner fica sempre renderizado, mas fora da tela: exibir via
    transform/opacity (e não display/hidden) evita layout shift (CLS). */
