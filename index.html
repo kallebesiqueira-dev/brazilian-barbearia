@@ -150,67 +150,64 @@
         <h2 class="section__title" id="galeria-titulo">O resultado<br><em>fala por si.</em></h2>
         <p class="section__text">Transformações reais feitas na cadeira da Brazilian Barbearia.</p>
 
-        <div class="gallery">
-          <div class="gallery__pair" role="group" aria-label="Transformação 1: antes e depois">
-            <figure class="gallery__item">
-              <button class="gallery__zoom" type="button" data-full="img/antes1.jpeg" data-alt="Antes: cliente com cabelo cacheado volumoso, sem acabamento.">
+        <div class="carousel" role="group" aria-roledescription="carrossel" aria-label="Cortes: antes e depois">
+          <button class="carousel__btn" id="carouselPrev" type="button" aria-label="Ver fotos anteriores">‹</button>
+          <ul class="carousel__track" id="carouselTrack">
+            <li class="carousel__item">
+              <button class="gallery__zoom gallery__zoom--round" type="button" data-full="img/antes1.jpeg" data-alt="Antes: cliente com cabelo cacheado volumoso, sem acabamento.">
                 <img src="img/antes1.jpeg" alt="Antes: cliente com cabelo cacheado volumoso, sem acabamento." width="1320" height="1390" loading="lazy">
                 <span class="gallery__tag">Antes</span>
               </button>
-            </figure>
-            <figure class="gallery__item">
-              <button class="gallery__zoom" type="button" data-full="img/depois1.jpeg" data-alt="Depois: corte finalizado com degradê baixo e topo texturizado.">
+            </li>
+            <li class="carousel__item">
+              <button class="gallery__zoom gallery__zoom--round" type="button" data-full="img/depois1.jpeg" data-alt="Depois: corte finalizado com degradê baixo e topo texturizado.">
                 <img src="img/depois1.jpeg" alt="Depois: corte finalizado com degradê baixo e topo texturizado." width="1320" height="1548" loading="lazy">
                 <span class="gallery__tag gallery__tag--accent">Depois</span>
               </button>
-            </figure>
-          </div>
-
-          <div class="gallery__pair" role="group" aria-label="Transformação 2: antes e depois">
-            <figure class="gallery__item">
-              <button class="gallery__zoom" type="button" data-full="img/antes2.jpeg" data-alt="Antes: cliente com coque alto e laterais crescidas.">
+            </li>
+            <li class="carousel__item">
+              <button class="gallery__zoom gallery__zoom--round" type="button" data-full="img/antes2.jpeg" data-alt="Antes: cliente com coque alto e laterais crescidas.">
                 <img src="img/antes2.jpeg" alt="Antes: cliente com coque alto e laterais crescidas." width="1320" height="1287" loading="lazy">
                 <span class="gallery__tag">Antes</span>
               </button>
-            </figure>
-            <figure class="gallery__item">
-              <button class="gallery__zoom" type="button" data-full="img/depois2.jpeg" data-alt="Depois: laterais com degradê limpo mantendo o coque no topo.">
+            </li>
+            <li class="carousel__item">
+              <button class="gallery__zoom gallery__zoom--round" type="button" data-full="img/depois2.jpeg" data-alt="Depois: laterais com degradê limpo mantendo o coque no topo.">
                 <img src="img/depois2.jpeg" alt="Depois: laterais com degradê limpo mantendo o coque no topo." width="1320" height="1274" loading="lazy">
                 <span class="gallery__tag gallery__tag--accent">Depois</span>
               </button>
-            </figure>
-          </div>
-
-          <div class="gallery__pair" role="group" aria-label="Transformação 3: antes e depois">
-            <figure class="gallery__item">
-              <button class="gallery__zoom" type="button" data-full="img/antes3.jpeg" data-alt="Antes: garoto com corte crescido, sem contornos.">
+            </li>
+            <li class="carousel__item">
+              <button class="gallery__zoom gallery__zoom--round" type="button" data-full="img/antes3.jpeg" data-alt="Antes: garoto com corte crescido, sem contornos.">
                 <img src="img/antes3.jpeg" alt="Antes: garoto com corte crescido, sem contornos." width="1320" height="1565" loading="lazy">
                 <span class="gallery__tag">Antes</span>
               </button>
-            </figure>
-            <figure class="gallery__item">
-              <button class="gallery__zoom" type="button" data-full="img/depois3.jpeg" data-alt="Depois: corte com desenho freestyle na lateral e acabamento em navalha.">
+            </li>
+            <li class="carousel__item">
+              <button class="gallery__zoom gallery__zoom--round" type="button" data-full="img/depois3.jpeg" data-alt="Depois: corte com desenho freestyle na lateral e acabamento em navalha.">
                 <img src="img/depois3.jpeg" alt="Depois: corte com desenho freestyle na lateral e acabamento em navalha." width="1320" height="1548" loading="lazy">
                 <span class="gallery__tag gallery__tag--accent">Depois</span>
               </button>
-            </figure>
-          </div>
+            </li>
+          </ul>
+          <button class="carousel__btn" id="carouselNext" type="button" aria-label="Ver próximas fotos">›</button>
+        </div>
 
-          <div class="gallery__wide">
-            <figure class="gallery__item gallery__item--video">
-              <video controls preload="metadata" width="720" height="1280" aria-label="Vídeo curto de um atendimento na Brazilian Barbearia.">
-                <source src="img/video trabalho.mp4" type="video/mp4">
-                Seu navegador não reproduz este vídeo. Baixe-o em <a href="img/video trabalho.mp4">vídeo do atendimento</a>.
-              </video>
-              <figcaption>Bastidores de um atendimento.</figcaption>
-            </figure>
-            <figure class="gallery__item">
-              <button class="gallery__zoom" type="button" data-full="img/entrada.jpeg" data-alt="Balcão de entrada preto com a marca Brazilian Barbearia e produtos expostos.">
-                <img src="img/entrada.jpeg" alt="Balcão de entrada preto com a marca Brazilian Barbearia e produtos expostos." width="960" height="1280" loading="lazy">
-                <span class="gallery__tag">A casa</span>
-              </button>
-            </figure>
-          </div>
+        <div class="gallery-squares">
+          <figure class="gallery__item gallery__item--video">
+            <video controls preload="metadata" width="720" height="1280" aria-label="Vídeo curto de um atendimento na Brazilian Barbearia.">
+              <source src="img/video trabalho.mp4" type="video/mp4">
+              Seu navegador não reproduz este vídeo. Baixe-o em <a href="img/video trabalho.mp4">vídeo do atendimento</a>.
+            </video>
+            <figcaption>Bastidores de um atendimento.</figcaption>
+          </figure>
+          <figure class="gallery__item">
+            <button class="gallery__zoom gallery__zoom--square" type="button" data-full="img/entrada.jpeg" data-alt="Balcão de entrada preto com a marca Brazilian Barbearia e produtos expostos.">
+              <img src="img/entrada.jpeg" alt="Balcão de entrada preto com a marca Brazilian Barbearia e produtos expostos." width="960" height="1280" loading="lazy">
+              <span class="gallery__tag">A casa</span>
+            </button>
+            <figcaption>A entrada da barbearia.</figcaption>
+          </figure>
         </div>
       </div>
     </section>
@@ -285,7 +282,7 @@
             <!-- Telefone exibido quando confirmado em js/config.js. -->
           </div>
         </div>
-        <figure class="section__figure">
+        <figure class="section__figure section__figure--square">
           <img src="img/entrada.jpeg" alt="Entrada da Brazilian Barbearia com balcão preto e logotipo em branco e amarelo." width="960" height="1280" loading="lazy">
           <figcaption>A entrada da Brazilian Barbearia.</figcaption>
         </figure>

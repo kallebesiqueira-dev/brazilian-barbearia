@@ -19,6 +19,39 @@
     return node;
   }
 
+  /* ---------- painéis empilhados: a página inteira sobe de baixo pra cima ----------
+     Cada seção fixa no topo (sticky) e a seguinte sobe por cima dela.
+     Seções mais altas que a tela recebem top negativo: o conteúdo rola
+     por completo antes de a seção fixar — nada fica inacessível. */
+  var panels = document.querySelectorAll(".panel");
+  function updateStackedPanels() {
+    panels.forEach(function (panel) {
+      panel.classList.add("panel--stack");
+      var overflow = panel.offsetHeight - window.innerHeight;
+      panel.style.top = overflow > 0 ? -overflow + "px" : "0px";
+    });
+  }
+  if (panels.length) {
+    updateStackedPanels();
+    window.addEventListener("resize", updateStackedPanels);
+    /* alturas mudam quando imagens/fontes terminam de carregar */
+    window.addEventListener("load", updateStackedPanels);
+  }
+
+  /* ---------- carrossel antes/depois ---------- */
+  var carouselTrack = document.getElementById("carouselTrack");
+  var carouselPrev = document.getElementById("carouselPrev");
+  var carouselNext = document.getElementById("carouselNext");
+  if (carouselTrack && carouselPrev && carouselNext) {
+    function slideBy(direction) {
+      var item = carouselTrack.querySelector(".carousel__item");
+      var step = item ? item.offsetWidth + 24 : carouselTrack.clientWidth / 2;
+      carouselTrack.scrollBy({ left: direction * step * 2, behavior: "smooth" });
+    }
+    carouselPrev.addEventListener("click", function () { slideBy(-1); });
+    carouselNext.addEventListener("click", function () { slideBy(1); });
+  }
+
   /* ---------- menu móvel ---------- */
   var navToggle = document.getElementById("navToggle");
   var navMenu = document.getElementById("navMenu");

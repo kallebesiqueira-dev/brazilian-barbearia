@@ -57,6 +57,9 @@ a { color: inherit; }
 
 button { font: inherit; color: inherit; cursor: pointer; }
 
+/* garante que [hidden] vença qualquer display definido por classe */
+[hidden] { display: none !important; }
+
 /* Grain sutil sobre todo o site — textura editorial, não decoração aleatória */
 body::after {
   content: "";
@@ -350,7 +353,10 @@ body::after {
   100% { transform: scaleY(1); opacity: 0; }
 }
 
-/* ---------- Painéis que sobem sobre o hero ---------- */
+/* ---------- Painéis empilhados: cada seção fixa e a próxima sobe por cima ----------
+   A classe .panel--stack é aplicada por js/main.js (sem JS a página flui normal).
+   Seções mais altas que a tela recebem top negativo via JS, para que todo o
+   conteúdo role antes de a seção fixar. */
 .panel {
   position: relative;
   z-index: 1;
@@ -358,6 +364,15 @@ body::after {
   box-shadow: 0 -30px 60px rgba(0, 0, 0, 0.55);
   margin-top: calc(-1 * var(--radius-panel));
 }
+.panel--stack {
+  position: sticky;
+  top: 0;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.panel--stack .section__inner { width: 100%; }
 .panel--green { background: linear-gradient(170deg, var(--green-deep), var(--green-dark) 70%); }
 .panel--black { background: linear-gradient(180deg, #161616, var(--black) 40%); }
 
@@ -430,16 +445,29 @@ body::after {
   color: rgba(255, 255, 255, 0.45);
 }
 
-/* ---------- Sobre ---------- */
-.about-figure { position: relative; }
-.about-figure::before {
-  content: "";
-  position: absolute;
-  inset: 1.2rem -1.2rem -1.2rem 1.2rem;
-  border: 1px solid rgba(242, 201, 76, 0.35);
-  border-radius: var(--radius-card);
-  z-index: -1;
+/* variação quadrada e menor (ex.: foto da entrada na Localização) */
+.section__figure--square {
+  max-width: min(400px, 100%);
+  margin-inline: auto;
 }
+.section__figure--square img {
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+/* ---------- Sobre ---------- */
+/* Retrato do Carlos: menor, em arco (cantos superiores a 50%) */
+.about-figure {
+  position: relative;
+  max-width: min(360px, 85%);
+  margin-inline: auto;
+}
+.about-figure img {
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: 50% 50% var(--radius-card) var(--radius-card);
+}
+.about-figure figcaption { text-align: center; }
 
 .about-marks {
   margin-top: var(--space-3);
@@ -504,21 +532,51 @@ body::after {
   max-width: 44rem;
 }
 
-/* ---------- Galeria ---------- */
-.gallery {
+/* ---------- Galeria: carrossel de antes/depois (fotos redondas) ---------- */
+.carousel {
   margin-top: var(--space-4);
-  display: grid;
-  gap: var(--space-3);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
 }
 
-.gallery__pair,
-.gallery__wide {
-  display: grid;
-  gap: var(--space-2);
-  grid-template-columns: 1fr;
+.carousel__track {
+  flex: 1;
+  display: flex;
+  gap: clamp(1rem, 3vw, 2rem);
+  margin: 0;
+  padding: 0.5rem 0.25rem;
+  list-style: none;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(242, 201, 76, 0.5) transparent;
 }
-@media (min-width: 640px) {
-  .gallery__pair, .gallery__wide { grid-template-columns: 1fr 1fr; }
+
+.carousel__item {
+  flex: none;
+  width: clamp(170px, 24vw, 230px);
+  scroll-snap-align: center;
+}
+
+.carousel__btn {
+  flex: none;
+  width: 2.8rem;
+  height: 2.8rem;
+  display: grid;
+  place-items: center;
+  font-size: 1.6rem;
+  line-height: 1;
+  color: var(--yellow);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+.carousel__btn:hover { border-color: var(--yellow); background: rgba(242, 201, 76, 0.12); }
+@media (max-width: 560px) {
+  .carousel__btn { display: none; } /* no toque, o arraste do carrossel basta */
 }
 
 .gallery__item { position: relative; }
@@ -541,6 +599,37 @@ body::after {
 }
 .gallery__zoom:hover img { transform: scale(1.04); }
 
+/* fotos redondas do carrossel */
+.gallery__zoom--round,
+.gallery__zoom--round img {
+  border-radius: 50%;
+}
+.gallery__zoom--round img { aspect-ratio: 1 / 1; }
+.gallery__zoom--round .gallery__tag {
+  top: auto;
+  bottom: 0.4rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* imagens e vídeos quadrados, menores */
+.gallery-squares {
+  margin-top: var(--space-4);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  justify-content: center;
+}
+.gallery-squares .gallery__item {
+  width: min(320px, 100%);
+}
+.gallery__zoom--square img,
+.gallery__item--video video {
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: var(--radius-card);
+}
+
 .gallery__tag {
   position: absolute;
   top: 0.9rem; left: 0.9rem;
@@ -557,9 +646,6 @@ body::after {
 
 .gallery__item--video video {
   width: 100%;
-  aspect-ratio: 9 / 16;
-  object-fit: cover;
-  border-radius: var(--radius-card);
   background: var(--black);
 }
 .gallery__item--video figcaption,

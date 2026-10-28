@@ -5,8 +5,8 @@ Landing page premium da **Brazilian Barbearia** — Rua Manoel Novais, 600, Paul
 ## 1. Objetivos e funcionalidades
 
 - Apresentar a barbearia com identidade visual própria (verde profundo, preto, branco e amarelo de destaque).
-- Scroll storytelling cinematográfico: o hero fica fixo e as seções sobem como painéis (CSS `position: sticky` + animações GSAP).
-- Galeria de transformações reais (antes/depois) com lightbox acessível e vídeo.
+- Scroll storytelling cinematográfico: **cada seção fixa na tela e a seguinte sobe de baixo para cima por cima dela** (deck de painéis via CSS `position: sticky` + ajuste JS para seções altas + animações GSAP).
+- Galeria de transformações reais: carrossel de fotos **redondas** antes/depois (scroll-snap + botões), vídeo e foto do ambiente em formato quadrado, lightbox acessível.
 - **Vitrine de produtos** gerada a partir das fotografias reais da pasta `img/`.
 - SEO local para Paulo Afonso e região (metadados, JSON-LD `BarberShop`, sitemap, robots).
 - Consentimento de cookies conforme LGPD + páginas de Termos, Privacidade e Cookies.
@@ -128,7 +128,7 @@ Enquanto vazia, a seção exibe um aviso honesto com o endereço para consulta.
 
 ## 10. Animações GSAP
 
-- Arquivo: `js/animations.js`. O efeito estrutural (painéis sobre o hero) é CSS puro (`.hero { position: sticky }`); o GSAP adiciona reveals e parallax.
+- Arquivo: `js/animations.js`. O efeito estrutural de empilhamento (cada painel fixa e o próximo sobe por cima) é CSS `position: sticky` + a função `updateStackedPanels()` em `js/main.js`, que dá `top` negativo a seções mais altas que a tela (o conteúdo rola inteiro antes de fixar). O GSAP adiciona reveals e parallax por cima disso.
 - `prefers-reduced-motion: reduce` desativa todas as animações (CSS e GSAP).
 - Se o CDN falhar, o site permanece completo — os estados iniciais invisíveis só são criados pelo próprio GSAP (`fromTo`).
 - Para ajustar intensidade: edite os valores `y`, `duration` e `stagger`; contextos mobile/desktop são separados via `gsap.matchMedia()`.

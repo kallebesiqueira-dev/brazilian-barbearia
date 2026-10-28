@@ -86,7 +86,7 @@
       });
 
       /* ---- grades de cards: stagger de baixo para cima ---- */
-      [".services", ".products", ".features", ".gallery"].forEach(function (selector) {
+      [".services", ".products", ".features", ".carousel__track", ".gallery-squares"].forEach(function (selector) {
         var grid = document.querySelector(selector);
         if (!grid || !grid.children.length) return;
         gsap.fromTo(
