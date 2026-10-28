@@ -266,6 +266,27 @@ body::after {
   /* mantém a área do logotipo (lado esquerdo da arte) visível em telas estreitas */
   object-position: 28% center;
 }
+.hero__logo { display: none; }
+
+/* Em telas estreitas a arte horizontal não cabe: o cover mostra só ~1/4 da
+   largura e o letreiro sai cortado. Então afastamos a foto para o lado da
+   cadeira (sem texto) e sobrepomos o logotipo completo; o blend "screen"
+   funde o fundo verde-escuro do JPEG com a foto. */
+@media (max-width: 760px) {
+  .hero__media { isolation: isolate; }
+  .hero__media img { object-position: 88% center; }
+  .hero__logo {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: clamp(6rem, 16svh, 10rem);
+    transform: translateX(-50%);
+    width: min(86vw, 24rem);
+    aspect-ratio: 637 / 499;
+    background: url("../img/logo.jpeg") center / cover no-repeat;
+    mix-blend-mode: screen;
+  }
+}
 /* véu leve: só um vinhete sutil para o indicador de scroll — a arte fica nítida */
 .hero__scrim {
   position: absolute;
@@ -399,6 +420,9 @@ body::after {
 }
 @media (min-width: 900px) {
   .section__inner--split { grid-template-columns: 1.1fr 0.9fr; }
+  /* zigue-zague: em seções "right" o texto vai para a coluna da direita */
+  .section--right .section__inner--split { grid-template-columns: 0.9fr 1.1fr; }
+  .section--right .section__inner--split .section__copy { order: 2; }
 }
 
 .section__eyebrow {
@@ -444,6 +468,8 @@ body::after {
 .section--right .section__eyebrow { justify-content: flex-end; }
 .section--right .section__title,
 .section--right .section__text,
+.section--right .location,
+.section--right .location__extra,
 .section--right .products__note { text-align: right; }
 .section--right .section__text { margin-left: auto; }
 
@@ -513,38 +539,76 @@ body::after {
   flex: none;
 }
 
-/* ---------- Serviços ---------- */
-.services {
-  margin-top: var(--space-4);
-  display: grid;
-  gap: var(--space-2);
-  grid-template-columns: repeat(auto-fill, minmax(min(16rem, 100%), 1fr));
-}
-
-.service-card {
-  padding: var(--space-3);
-  border: 1px solid var(--line);
+/* ---------- Serviços: cardápio de preços ---------- */
+.menu {
+  margin: var(--space-4) auto 0;
+  max-width: 42rem;
+  padding: clamp(1.75rem, 6vw, 3rem);
+  background:
+    radial-gradient(120% 90% at 50% 0%, rgba(242, 201, 76, 0.07), transparent 60%),
+    rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(242, 201, 76, 0.4);
   border-radius: var(--radius-card);
-  background: rgba(255, 255, 255, 0.03);
-  transition: border-color 0.25s ease, transform 0.25s ease;
+  /* moldura dupla, como cardápio de parede */
+  outline: 1px solid rgba(242, 201, 76, 0.18);
+  outline-offset: 6px;
 }
-.service-card:hover {
-  border-color: rgba(242, 201, 76, 0.5);
-  transform: translateY(-4px);
-}
-.service-card h3 {
+.menu__head {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
   font-family: var(--font-display);
-  font-weight: 400;
-  font-size: 1.3rem;
+  font-size: 1rem;
+  letter-spacing: 0.4em;
+  text-indent: 0.4em; /* compensa o letter-spacing do último caractere */
   text-transform: uppercase;
-  letter-spacing: 0.03em;
-}
-.service-card p { margin-top: 0.5rem; color: var(--ink-soft); font-size: 0.95rem; }
-.service-card .service-card__price {
-  margin-top: var(--space-2);
-  font-weight: 700;
   color: var(--yellow);
-  font-size: 1.1rem;
+}
+.menu__rule {
+  flex: 1;
+  max-width: 5rem;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(242, 201, 76, 0.6), transparent);
+}
+.menu__list {
+  margin-top: var(--space-3);
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 1.2rem;
+}
+.menu__row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+.menu__name {
+  font-family: var(--font-display);
+  font-size: clamp(1.05rem, 2.6vw, 1.35rem);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  text-align: left;
+}
+.menu__dots {
+  flex: 1;
+  min-width: 2rem;
+  border-bottom: 2px dotted rgba(255, 255, 255, 0.22);
+  transform: translateY(-0.3em);
+}
+.menu__price {
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--yellow);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.menu__desc {
+  margin-top: 0.35rem;
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  text-align: left;
+  max-width: 30rem;
 }
 
 .services__empty {
@@ -689,12 +753,16 @@ body::after {
   padding: 0;
   background: transparent;
   max-width: min(92vw, 60rem);
+  /* svh = altura realmente visível no iOS (com a barra do Safari aberta);
+     com vh o dialog ficava maior que a tela e o botão Fechar era cortado */
   max-height: 92vh;
+  max-height: 88svh;
 }
 .lightbox::backdrop { background: rgba(10, 20, 15, 0.92); }
 .lightbox img {
   max-width: 100%;
   max-height: 82vh;
+  max-height: 76svh;
   width: auto;
   margin-inline: auto;
   border-radius: var(--radius-card);
@@ -798,6 +866,10 @@ body::after {
   overflow: hidden;
   display: flex;
 }
+/* Diferenciais: o título fica no topo do painel (não centralizado na tela);
+   o carrossel ocupa o espaço restante, centralizado verticalmente */
+#diferenciais.panel--stack { justify-content: flex-start; }
+#diferenciais.panel--stack .marquee { margin-block: auto; }
 
 .marquee__group {
   flex: none;
@@ -878,7 +950,7 @@ body::after {
 .footer {
   position: relative;
   z-index: 2;
-  background: var(--black);
+  background: linear-gradient(170deg, var(--green-deep), var(--green-dark) 70%);
   border-top: 1px solid rgba(242, 201, 76, 0.25);
   border-radius: var(--radius-panel) var(--radius-panel) 0 0;
   box-shadow: 0 -30px 60px rgba(0, 0, 0, 0.55);

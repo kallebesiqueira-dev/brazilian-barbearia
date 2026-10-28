@@ -38,6 +38,7 @@
     "name": "Brazilian Barbearia",
     "description": "Barbearia em Paulo Afonso, Bahia. Corte masculino, barba e produtos de cuidado pessoal.",
     "image": "img/entrada.jpeg",
+    "priceRange": "R$ 10,00 - R$ 50,00",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Rua Manoel Novais, 600",
@@ -72,6 +73,7 @@
         <li><a href="#sobre">Sobre</a></li>
         <li><a href="#diferenciais">Diferenciais</a></li>
         <li><a href="#galeria">Galeria</a></li>
+        <li><a href="#servicos">Preços</a></li>
         <li><a href="#produtos">Produtos</a></li>
         <li><a href="#localizacao">Localização</a></li>
         <li><a class="nav__cta" href="#produtos">Vitrine</a></li>
@@ -86,6 +88,9 @@
       <div class="hero__media" aria-hidden="true">
         <!-- imagem oficial do hero (contém o logotipo); original em img/hero.png -->
         <img src="img/hero-bg.jpg" alt="" width="1672" height="941" fetchpriority="high">
+        <!-- em telas estreitas o letreiro da arte sai do enquadramento; este
+             elemento recebe o logotipo completo via CSS (só carrega no mobile) -->
+        <div class="hero__logo"></div>
         <div class="hero__scrim"></div>
       </div>
       <!-- Título mantido invisível para SEO e leitores de tela -->
@@ -215,10 +220,30 @@
       </div>
     </section>
 
-    <!-- ============ SEÇÃO 5 — PRODUTOS ============ -->
-    <section class="panel panel--black section section--right" id="produtos" aria-labelledby="produtos-titulo">
+    <!-- ============ SEÇÃO 5 — SERVIÇOS / TABELA DE PREÇOS ============ -->
+    <section class="panel panel--black section section--right" id="servicos" aria-labelledby="servicos-titulo">
       <div class="section__inner">
-        <p class="section__eyebrow"><span class="section__num" aria-hidden="true">04</span>Vitrine</p>
+        <p class="section__eyebrow"><span class="section__num" aria-hidden="true">04</span>Tabela de preços</p>
+        <h2 class="section__title" id="servicos-titulo">Preço justo.<br><em>Trabalho de respeito.</em></h2>
+        <p class="section__text">Valores confirmados — o que você vê aqui é o que paga na cadeira.</p>
+
+        <div class="menu">
+          <p class="menu__head" aria-hidden="true"><span class="menu__rule"></span>Cardápio<span class="menu__rule"></span></p>
+          <ul class="menu__list" id="servicesGrid">
+            <!-- Preenchido por js/main.js a partir de js/config.js. -->
+          </ul>
+        </div>
+        <p class="services__empty" id="servicesEmpty" hidden>Tabela de preços em atualização — consulte os valores direto na barbearia.</p>
+        <noscript>
+          <p class="services__empty">Ative o JavaScript para ver a tabela de preços, ou consulte os valores direto na barbearia.</p>
+        </noscript>
+      </div>
+    </section>
+
+    <!-- ============ SEÇÃO 6 — PRODUTOS ============ -->
+    <section class="panel panel--green section" id="produtos" aria-labelledby="produtos-titulo">
+      <div class="section__inner">
+        <p class="section__eyebrow"><span class="section__num" aria-hidden="true">05</span>Vitrine</p>
         <h2 class="section__title" id="produtos-titulo">Os produtos que fazem<br><em>parte do seu estilo.</em></h2>
         <p class="section__text">Encontre produtos para cuidar do cabelo e da barba, disponíveis na Brazilian Barbearia.</p>
 
@@ -232,11 +257,11 @@
       </div>
     </section>
 
-    <!-- ============ SEÇÃO — LOCALIZAÇÃO ============ -->
-    <section class="panel panel--green section" id="localizacao" aria-labelledby="localizacao-titulo">
+    <!-- ============ SEÇÃO 7 — LOCALIZAÇÃO ============ -->
+    <section class="panel panel--black section section--right" id="localizacao" aria-labelledby="localizacao-titulo">
       <div class="section__inner section__inner--split">
         <div class="section__copy">
-          <p class="section__eyebrow"><span class="section__num" aria-hidden="true">05</span>Localização</p>
+          <p class="section__eyebrow"><span class="section__num" aria-hidden="true">06</span>Localização</p>
           <h2 class="section__title" id="localizacao-titulo">Passa aqui.<br><em>Te esperamos.</em></h2>
           <address class="location">
             <p class="location__street">Rua Manoel Novais, 600</p>
@@ -260,9 +285,9 @@
     </section>
 
     <!-- ============ SEÇÃO 8 — AGENDAMENTO (suspenso até a URL oficial do Agenda Easy) ============ -->
-    <section class="panel panel--black section" id="agendamento" aria-labelledby="agendamento-titulo" hidden>
+    <section class="panel panel--green section" id="agendamento" aria-labelledby="agendamento-titulo" hidden>
       <div class="section__inner section__inner--narrow">
-        <p class="section__eyebrow"><span class="section__num" aria-hidden="true">06</span>Agendamento</p>
+        <p class="section__eyebrow"><span class="section__num" aria-hidden="true">07</span>Agendamento</p>
         <h2 class="section__title" id="agendamento-titulo">Garanta seu horário.</h2>
         <p class="section__text">Agende seu atendimento online pela Agenda Easy.</p>
         <a class="btn btn--solid" id="bookingLink" href="#" target="_blank" rel="noopener noreferrer">Agendar horário</a>
@@ -288,6 +313,7 @@
           <li><a href="#sobre">Sobre</a></li>
           <li><a href="#diferenciais">Diferenciais</a></li>
           <li><a href="#galeria">Galeria</a></li>
+          <li><a href="#servicos">Preços</a></li>
           <li><a href="#produtos">Produtos</a></li>
           <li><a href="#localizacao">Localização</a></li>
         </ul>

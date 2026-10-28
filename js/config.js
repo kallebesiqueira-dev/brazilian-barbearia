@@ -35,5 +35,12 @@ window.SITE_CONFIG = {
      { name: "Corte masculino", description: "Tesoura e máquina", price: "R$ 0,00" }
      price e description são opcionais.
      -------------------------------------------------------------------- */
-  services: []
+  services: [
+    { name: "Cabelo Adulto", price: "R$ 30,00" },
+    { name: "Cabelo Criança", price: "R$ 30,00" },
+    { name: "Barba", price: "R$ 25,00" },
+    { name: "Pezinho", price: "R$ 10,00" },
+    { name: "Sobrancelha", price: "R$ 10,00" },
+    { name: "Combo Cabelo + Barba", price: "R$ 50,00" }
+  ]
 };

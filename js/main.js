@@ -95,19 +95,24 @@
   var servicesEmpty = document.getElementById("servicesEmpty");
   if (servicesGrid) {
     var services = CONFIG.services || [];
+    var menuBox = servicesGrid.closest(".menu");
     if (!services.length) {
+      if (menuBox) menuBox.hidden = true;
       if (servicesEmpty) servicesEmpty.hidden = false;
     } else {
       services.forEach(function (service) {
-        var card = el("article", "service-card");
-        card.appendChild(el("h3", null, service.name));
-        if (service.description) {
-          card.appendChild(el("p", null, service.description));
-        }
+        var item = el("li", "menu__item");
+        var row = el("div", "menu__row");
+        row.appendChild(el("span", "menu__name", service.name));
+        row.appendChild(el("span", "menu__dots"));
         if (service.price) {
-          card.appendChild(el("p", "service-card__price", service.price));
+          row.appendChild(el("span", "menu__price", service.price));
         }
-        servicesGrid.appendChild(card);
+        item.appendChild(row);
+        if (service.description) {
+          item.appendChild(el("p", "menu__desc", service.description));
+        }
+        servicesGrid.appendChild(item);
       });
     }
   }
