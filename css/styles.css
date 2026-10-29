@@ -267,11 +267,17 @@ body::after {
   object-position: 28% center;
 }
 
-/* Em telas estreitas (retrato) a arte horizontal não cabe inteira: o
-   object-position centraliza o letreiro da própria arte na tela ("BRAZILIAN"
-   ocupa 30,4%–51,4% da largura da imagem; centro em ~41%). */
+/* Em telas estreitas (retrato) a arte aparece inteira, na proporção
+   original (sem o zoom do cover), centralizada na tela; o fundo verde dos
+   painéis preenche o espaço acima/abaixo. */
 @media (max-width: 760px) and (orientation: portrait) {
-  .hero__media img { object-position: 40.5% center; }
+  .hero__media {
+    background: linear-gradient(170deg, var(--green-deep), var(--green-dark) 70%);
+  }
+  .hero__media img {
+    object-fit: contain;
+    object-position: center;
+  }
 }
 /* véu leve: só um vinhete sutil para o indicador de scroll — a arte fica nítida */
 .hero__scrim {

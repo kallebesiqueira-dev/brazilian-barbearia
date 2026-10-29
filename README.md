@@ -18,7 +18,7 @@ Landing page premium da **Brazilian Barbearia** — Rua Manoel Novais, 600, Paul
 
 ![Rodapé](docs/screenshots/footer.jpg)
 
-As capturas vivem em `docs/screenshots/` (JPEG ~80% de qualidade, geradas via Playwright/Chromium em 1280×800 e 390×720\@2x). Regenere-as após mudanças visuais relevantes.
+As capturas vivem em `docs/screenshots/` (JPEG ~80% de qualidade, geradas via Chromium headless em 1280 px de largura no desktop e 390 px no mobile, com `prefers-reduced-motion` para desligar as animações). Regenere-as após mudanças visuais relevantes.
 
 ## 1. Objetivos e funcionalidades
 
@@ -92,7 +92,7 @@ Quando o domínio oficial existir, atualize em 4 lugares:
 ## 7. Fotografias e vídeos
 
 - As imagens vivem em `img/`. **Não renomeie os arquivos existentes** sem atualizar os caminhos em `index.html` e `js/products.js`.
-- Hero usa `img/hero-bg.jpg` (JPEG otimizado gerado da arte oficial, cujo logotipo compacto tem o centro em ~42% da largura). Em telas estreitas (retrato) o CSS centraliza o letreiro da própria arte via `object-position: 38%`; em paisagem e desktop a arte aparece inteira — sem sobreposição de logotipo e sem nome duplicado. Sobre usa `img/carlos-retrato.png` (retrato recortado, fundo transparente); a galeria usa os pares `antes*/depois*` e `video trabalho.mp4`; a Localização exibe um mapa incorporado do Google Maps (sem chave de API, via `output=embed`).
+- Hero usa `img/hero-bg.jpg` (JPEG otimizado gerado da arte oficial, com logotipo compacto). Em telas estreitas (retrato) a arte aparece **inteira e na proporção original** (`object-fit: contain`), centralizada, com o gradiente verde dos painéis preenchendo o espaço acima/abaixo; em paisagem e desktop a arte preenche a tela (`cover`). Sobre usa `img/carlos-retrato.png` (retrato recortado, fundo transparente); a galeria usa os pares `antes*/depois*` e `video trabalho.mp4`; a Localização exibe um mapa incorporado do Google Maps (sem chave de API, via `output=embed`).
 - Para trocar uma foto, substitua o arquivo mantendo o nome, ou atualize o `src` + atributos `width`/`height` correspondentes (eles evitam layout shift).
 - Vídeos: use MP4 curto, `preload="metadata"`, nunca autoplay com áudio.
 
