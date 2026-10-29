@@ -9,7 +9,7 @@ Landing page premium da **Brazilian Barbearia** — Rua Manoel Novais, 600, Paul
 | Desktop | Mobile |
 |---|---|
 | ![Cardápio de preços](docs/screenshots/cardapio.jpg) | ![Cardápio no celular](docs/screenshots/cardapio-mobile.jpg) |
-| ![Galeria antes/depois](docs/screenshots/galeria.jpg) | ![Hero no iPhone — logotipo completo sobreposto](docs/screenshots/hero-mobile.jpg) |
+| ![Galeria antes/depois](docs/screenshots/galeria.jpg) | ![Hero no celular — letreiro da arte centralizado](docs/screenshots/hero-mobile.jpg) |
 
 | | |
 |---|---|
@@ -92,7 +92,7 @@ Quando o domínio oficial existir, atualize em 4 lugares:
 ## 7. Fotografias e vídeos
 
 - As imagens vivem em `img/`. **Não renomeie os arquivos existentes** sem atualizar os caminhos em `index.html` e `js/products.js`.
-- Hero usa `img/hero-bg.jpg` (versão web otimizada da arte oficial com o logotipo). Em telas ≤ 760 px a arte horizontal não cabe (o `cover` mostra ~1/4 da largura e cortaria o letreiro): o CSS desloca a foto para o lado da cadeira e sobrepõe `img/logo-hero.png` — PNG com transparência real gerado de `img/logo.jpeg` pelo script `_logo_alpha.ps1` (rodar com Windows PowerShell 5.1). Não usamos `mix-blend-mode` porque o Safari/iOS não o aplica de forma confiável dentro de ancestral `position: sticky`. Sobre usa `img/carlos-retrato.png` (retrato recortado, fundo transparente); a galeria usa os pares `antes*/depois*` e `video trabalho.mp4`; a Localização exibe um mapa incorporado do Google Maps (sem chave de API, via `output=embed`).
+- Hero usa `img/hero-bg.jpg` (JPEG otimizado gerado da arte oficial, cujo logotipo compacto tem o centro em ~42% da largura). Em telas estreitas (retrato) o CSS centraliza o letreiro da própria arte via `object-position: 38%`; em paisagem e desktop a arte aparece inteira — sem sobreposição de logotipo e sem nome duplicado. Sobre usa `img/carlos-retrato.png` (retrato recortado, fundo transparente); a galeria usa os pares `antes*/depois*` e `video trabalho.mp4`; a Localização exibe um mapa incorporado do Google Maps (sem chave de API, via `output=embed`).
 - Para trocar uma foto, substitua o arquivo mantendo o nome, ou atualize o `src` + atributos `width`/`height` correspondentes (eles evitam layout shift).
 - Vídeos: use MP4 curto, `preload="metadata"`, nunca autoplay com áudio.
 
