@@ -862,6 +862,14 @@ body::after {
   color: transparent;
   -webkit-text-stroke: 1px var(--yellow);
 }
+/* ícones SVG no lugar de caracteres (✂ etc. não renderizam no iOS com
+   text-stroke); o traço herda o dourado via currentColor */
+.feature__icon {
+  width: 1.9rem;
+  height: 1.9rem;
+  flex: none;
+  color: var(--yellow);
+}
 .feature h3 {
   margin-top: 0.6rem;
   font-size: 0.88rem;
