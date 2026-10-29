@@ -90,33 +90,6 @@
     });
   }
 
-  /* ---------- serviços (dados editáveis em js/config.js) ---------- */
-  var servicesGrid = document.getElementById("servicesGrid");
-  var servicesEmpty = document.getElementById("servicesEmpty");
-  if (servicesGrid) {
-    var services = CONFIG.services || [];
-    var menuBox = servicesGrid.closest(".menu");
-    if (!services.length) {
-      if (menuBox) menuBox.hidden = true;
-      if (servicesEmpty) servicesEmpty.hidden = false;
-    } else {
-      services.forEach(function (service) {
-        var item = el("li", "menu__item");
-        var row = el("div", "menu__row");
-        row.appendChild(el("span", "menu__name", service.name));
-        row.appendChild(el("span", "menu__dots"));
-        if (service.price) {
-          row.appendChild(el("span", "menu__price", service.price));
-        }
-        item.appendChild(row);
-        if (service.description) {
-          item.appendChild(el("p", "menu__desc", service.description));
-        }
-        servicesGrid.appendChild(item);
-      });
-    }
-  }
-
   /* ---------- vitrine de produtos (dados em js/products.js) ---------- */
   var productsGrid = document.getElementById("productsGrid");
   if (productsGrid) {

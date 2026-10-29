@@ -26,21 +26,9 @@ window.SITE_CONFIG = {
 
   /* Horários de funcionamento — exibidos na seção Localização quando
      confirmados. Ex.: ["Seg a Sex — 8h às 19h", "Sáb — 8h às 17h"] */
-  hours: [],
+  hours: []
 
-  /* --------------------------------------------------------------------
-     SERVIÇOS — preencher somente com dados confirmados pelo proprietário.
-     Enquanto a lista estiver vazia, a seção mostra um aviso honesto.
-     Formato de cada item:
-     { name: "Corte masculino", description: "Tesoura e máquina", price: "R$ 0,00" }
-     price e description são opcionais.
-     -------------------------------------------------------------------- */
-  services: [
-    { name: "Cabelo Adulto", price: "R$ 30,00" },
-    { name: "Cabelo Criança", price: "R$ 30,00" },
-    { name: "Barba", price: "R$ 25,00" },
-    { name: "Pezinho", price: "R$ 10,00" },
-    { name: "Sobrancelha", price: "R$ 10,00" },
-    { name: "Combo Cabelo + Barba", price: "R$ 50,00" }
-  ]
+  /* Serviços/preços: exibidos como arte oficial (img/lista-precos.jpg) na
+     seção #servicos — para alterar valores, substitua a arte e atualize o
+     alt da imagem + priceRange no JSON-LD do index.html. */
 };

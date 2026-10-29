@@ -1,6 +1,6 @@
 # Brazilian Barbearia — Site Oficial
 
-Landing page premium da **Brazilian Barbearia** — Rua Manoel Novais, 600, Paulo Afonso, Bahia, Brasil. À frente do atendimento está **Carlos**, barbeiro com mais de 3 anos de experiência.
+Landing page premium da **Brazilian Barbearia** — Rua Manoel Novais, 600, Paulo Afonso, Bahia, Brasil. À frente do atendimento está **Carlos**, barbeiro com mais de 5 anos de experiência.
 
 ![Hero no desktop](docs/screenshots/hero-desktop.jpg)
 
@@ -25,7 +25,7 @@ As capturas vivem em `docs/screenshots/` (JPEG ~80% de qualidade, geradas via Pl
 - Apresentar a barbearia com identidade visual própria (verde profundo, preto, branco e amarelo de destaque).
 - Scroll storytelling cinematográfico: **cada seção fixa na tela e a seguinte sobe de baixo para cima por cima dela** (deck de painéis via CSS `position: sticky` + ajuste JS para seções altas + animações GSAP).
 - Ritmo visual alternado: painéis **verde → preto → verde…** até o rodapé (verde) e títulos em **zigue-zague** (seção ímpar à esquerda, par à direita via `section--right`; na Localização o mapa troca de coluna com o texto).
-- **Cardápio de preços** (seção 04): moldura dupla dourada estilo cardápio de parede, itens com linha pontilhada entre nome e preço — dados vindos de `js/config.js`.
+- **Tabela de preços** (seção 04): arte oficial da barbearia (`img/lista-precos.jpg`) na mesma moldura dourada; os valores também vivem no `alt` da imagem (acessibilidade/SEO).
 - Galeria de transformações reais: carrossel de fotos **redondas** antes/depois (scroll-snap + botões), vídeo e foto do ambiente em formato quadrado, lightbox acessível.
 - **Vitrine de produtos** gerada a partir das fotografias reais da pasta `img/`.
 - SEO local para Paulo Afonso e região (metadados, JSON-LD `BarberShop`, sitemap, robots).
@@ -48,7 +48,7 @@ Sem frameworks, sem bundler, sem dependências npm: abra e publique como arquivo
 ├── index.html              # página única com todas as seções
 ├── css/styles.css          # identidade visual completa (design tokens no topo)
 ├── js/
-│   ├── config.js           # TUDO que depende do proprietário (serviços, contatos, Agenda Easy)
+│   ├── config.js           # TUDO que depende do proprietário (contatos, horários, Agenda Easy)
 │   ├── products.js         # catálogo de produtos (fonte única de dados)
 │   ├── main.js             # renderização, menu, lightbox, rodapé
 │   ├── cookie-consent.js   # banner e preferências de cookies (LGPD)
@@ -92,7 +92,7 @@ Quando o domínio oficial existir, atualize em 4 lugares:
 ## 7. Fotografias e vídeos
 
 - As imagens vivem em `img/`. **Não renomeie os arquivos existentes** sem atualizar os caminhos em `index.html` e `js/products.js`.
-- Hero usa `img/hero-bg.jpg` (versão web otimizada, 211 KB, gerada do original `img/hero.png` com a arte oficial do logotipo). Em telas ≤ 760 px a arte horizontal não cabe (o `cover` mostra ~1/4 da largura e cortaria o letreiro): o CSS desloca a foto para o lado da cadeira e sobrepõe `img/logo.jpeg` completo com `mix-blend-mode: screen` — o mesmo logotipo/técnica usados no rodapé (o fundo escuro do JPEG some sobre o verde). Sobre usa `img/carlos.jpeg`; a galeria usa os pares `antes*/depois*` e `video trabalho.mp4`; a Localização exibe um mapa incorporado do Google Maps (sem chave de API, via `output=embed`).
+- Hero usa `img/hero-bg.jpg` (versão web otimizada da arte oficial com o logotipo). Em telas ≤ 760 px a arte horizontal não cabe (o `cover` mostra ~1/4 da largura e cortaria o letreiro): o CSS desloca a foto para o lado da cadeira e sobrepõe `img/logo-hero.png` — PNG com transparência real gerado de `img/logo.jpeg` pelo script `_logo_alpha.ps1` (rodar com Windows PowerShell 5.1). Não usamos `mix-blend-mode` porque o Safari/iOS não o aplica de forma confiável dentro de ancestral `position: sticky`. Sobre usa `img/carlos-retrato.png` (retrato recortado, fundo transparente); a galeria usa os pares `antes*/depois*` e `video trabalho.mp4`; a Localização exibe um mapa incorporado do Google Maps (sem chave de API, via `output=embed`).
 - Para trocar uma foto, substitua o arquivo mantendo o nome, ou atualize o `src` + atributos `width`/`height` correspondentes (eles evitam layout shift).
 - Vídeos: use MP4 curto, `preload="metadata"`, nunca autoplay com áudio.
 
@@ -138,7 +138,7 @@ Os rótulos nas fotografias **não exibem preço impresso**. Os valores publicad
 
 ## 9. Serviços — cardápio de preços
 
-Reativada em 28/10/2026 com os **valores confirmados pelo proprietário**, em formato de cardápio (seção `#servicos`, "04 — Tabela de preços"):
+Exibida como **arte oficial da barbearia** (`img/lista-precos.jpg`, seção `#servicos`, "04 — Tabela de preços") com os valores confirmados pelo proprietário em 28/10/2026:
 
 | Serviço | Preço |
 |---|---|
@@ -149,9 +149,7 @@ Reativada em 28/10/2026 com os **valores confirmados pelo proprietário**, em fo
 | Sobrancelha | R$ 10,00 |
 | Combo Cabelo + Barba | R$ 50,00 |
 
-- Os dados vivem em **`js/config.js`** (`services: [{ name, price, description? }]`); `js/main.js` renderiza cada item como linha do cardápio (nome + pontilhado + preço; `description` vira uma linha menor abaixo, se existir).
-- Se a lista ficar vazia, a moldura some e um aviso honesto aparece no lugar (`#servicesEmpty`).
-- Ao alterar a faixa de valores, atualize também o `priceRange` no JSON-LD do `index.html` (hoje `R$ 10,00 - R$ 50,00`).
+- Para alterar valores: substitua a arte (`img/lista-precos.jpg`) e atualize **três** pontos no `index.html` — o `alt` da imagem (lista os preços por extenso para leitores de tela e SEO), o `priceRange` no JSON-LD (hoje `R$ 10,00 - R$ 50,00`) e, se mudarem os serviços, a tabela acima neste README.
 
 ## 10. Animações GSAP
 
@@ -223,12 +221,12 @@ Nenhuma URL foi inventada; não há formulário simulando reservas.
 
 - Imagens servidas em JPEG original (sem variantes WebP/AVIF geradas — otimização futura recomendada; tamanhos atuais são moderados, 100–230 KB).
 - Páginas legais aguardam dados cadastrais do proprietário.
-- Durações dos serviços ainda não informadas (cardápio exibe apenas nome + preço).
+- Durações dos serviços ainda não informadas (a arte da tabela exibe apenas nome + preço).
 
 ## 18. Checklist de publicação
 
 - [ ] Definir domínio e aplicar seção 6
-- [x] Preencher serviços em `js/config.js` (28/10/2026) — horários/telefone ainda pendentes
+- [x] Tabela de preços publicada como arte oficial (28/10/2026) — horários/telefone ainda pendentes
 - [ ] Confirmar produto pendente (`needsReview`)
 - [ ] Ativar GitHub Pages (ou outro host)
 - [ ] Rodar Lighthouse na URL pública e registrar resultados
