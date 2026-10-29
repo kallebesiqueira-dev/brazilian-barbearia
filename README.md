@@ -92,7 +92,7 @@ Quando o domínio oficial existir, atualize em 4 lugares:
 ## 7. Fotografias e vídeos
 
 - As imagens vivem em `img/`. **Não renomeie os arquivos existentes** sem atualizar os caminhos em `index.html` e `js/products.js`.
-- Hero usa `img/hero-bg.jpg` (JPEG otimizado gerado da arte oficial, com logotipo compacto). Em telas estreitas (retrato) a arte aparece **inteira e na proporção original** (`object-fit: contain`), centralizada, com o gradiente verde dos painéis preenchendo o espaço acima/abaixo; em paisagem e desktop a arte preenche a tela (`cover`). Sobre usa `img/carlos-retrato.png` (retrato recortado, fundo transparente); a galeria usa os pares `antes*/depois*` e `video trabalho.mp4`; a Localização exibe um mapa incorporado do Google Maps (sem chave de API, via `output=embed`).
+- Hero usa `img/hero-bg.jpg` (JPEG otimizado gerado da arte oficial, com logotipo compacto). A arte preenche a tela (`cover`) em todas as larguras, como no desktop; em telas estreitas (retrato) o `object-position: 40.5%` centraliza o letreiro da arte na tela (valor calibrado visualmente — "BRAZILIAN" ocupa 30,4%–51,4% da largura da imagem). Sobre usa `img/carlos-retrato.png` (retrato recortado, fundo transparente); a galeria usa os pares `antes*/depois*` e `video trabalho.mp4`; a Localização exibe um mapa incorporado do Google Maps (sem chave de API, via `output=embed`).
 - Para trocar uma foto, substitua o arquivo mantendo o nome, ou atualize o `src` + atributos `width`/`height` correspondentes (eles evitam layout shift).
 - Vídeos: use MP4 curto, `preload="metadata"`, nunca autoplay com áudio.
 
