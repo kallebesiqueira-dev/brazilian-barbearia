@@ -512,12 +512,34 @@ body::after {
   max-width: min(360px, 85%);
   margin-inline: auto;
 }
-.about-figure img {
+/* caixinha do retrato: arco com fundo escuro e padrão de ferramentas
+   (tesouras e máquinas em traço dourado sutil, SVG embutido) */
+.about-figure__frame {
+  position: relative;
   aspect-ratio: 3 / 4;
-  object-fit: cover;
   border-radius: 50% 50% var(--radius-card) var(--radius-card);
-  /* o retrato é PNG recortado: o gradiente preenche o arco atrás dele */
-  background: linear-gradient(180deg, rgba(16, 16, 16, 0.18), rgba(16, 16, 16, 0.55));
+  overflow: hidden;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cg fill='none' stroke='%23f2c94c' stroke-opacity='.13' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='28' cy='34' r='7'/%3E%3Ccircle cx='28' cy='58' r='7'/%3E%3Cpath d='M34 39l38 26M34 53l38-26'/%3E%3Crect x='88' y='78' width='26' height='40' rx='7'/%3E%3Cpath d='M88 90h26M93 78v-7M100 78v-9M107 78v-7'/%3E%3C/g%3E%3C/svg%3E") center / 130px auto,
+    linear-gradient(180deg, rgba(16, 16, 16, 0.2), rgba(16, 16, 16, 0.58));
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.45);
+}
+.about-figure__frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* o enquadramento agora é da caixinha */
+  border-radius: 0;
+  box-shadow: none;
+}
+/* sombra suave na base: esconde o corte reto do PNG recortado */
+.about-figure__frame::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 30%;
+  background: linear-gradient(to top, rgba(10, 16, 13, 0.92), rgba(10, 16, 13, 0.4) 50%, transparent);
+  pointer-events: none;
 }
 .about-figure figcaption { text-align: center; }
 
@@ -800,9 +822,13 @@ body::after {
   overflow: hidden;
   display: flex;
 }
-/* Diferenciais: o título fica no topo do painel (não centralizado na tela);
-   o carrossel ocupa o espaço restante, centralizado verticalmente */
-#diferenciais.panel--stack { justify-content: flex-start; }
+/* Diferenciais: o título fica rente ao topo do painel (padding menor que o
+   das demais seções); o carrossel centraliza no espaço restante — assim há
+   respiro claro entre o título e os cards */
+#diferenciais.panel--stack {
+  justify-content: flex-start;
+  padding-top: clamp(2rem, 5vh, 3.25rem);
+}
 #diferenciais.panel--stack .marquee { margin-block: auto; }
 
 .marquee__group {
