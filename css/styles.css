@@ -276,8 +276,8 @@ body::after {
 }
 /* iPhone (≤ 430 px): a imagem é cropped mais agressivamente, então o
    letreiro precisa de um valor menor para ficar centrado na tela. */
-@media (max-width: 430px) and (orientation: portrait) {
-  .hero__media img { object-position: 18% center; }
+@media (max-width: 430px) {
+  .hero__media img { object-position: 15% center; }
 }
 /* véu leve: só um vinhete sutil para o indicador de scroll — a arte fica nítida */
 .hero__scrim {
