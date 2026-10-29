@@ -270,10 +270,10 @@ body::after {
 
 /* Em telas estreitas a arte horizontal não cabe: o cover mostra só ~1/4 da
    largura e o letreiro sai cortado. Então afastamos a foto para o lado da
-   cadeira (sem texto) e sobrepomos o logotipo completo; o blend "screen"
-   funde o fundo verde-escuro do JPEG com a foto. */
+   cadeira (sem texto) e sobrepomos o logotipo em PNG com alfa real
+   (gerado por _logo_alpha.ps1) — sem mix-blend-mode, que o Safari/iOS
+   não aplica de forma confiável dentro de um ancestral sticky. */
 @media (max-width: 760px) {
-  .hero__media { isolation: isolate; }
   .hero__media img { object-position: 88% center; }
   .hero__logo {
     display: block;
@@ -283,8 +283,8 @@ body::after {
     transform: translateX(-50%);
     width: min(86vw, 24rem);
     aspect-ratio: 637 / 499;
-    background: url("../img/logo.jpeg") center / cover no-repeat;
-    mix-blend-mode: screen;
+    background: url("../img/logo-hero.png") center / contain no-repeat;
+    filter: drop-shadow(0 2px 14px rgba(0, 0, 0, 0.55));
   }
 }
 /* véu leve: só um vinhete sutil para o indicador de scroll — a arte fica nítida */
@@ -516,6 +516,8 @@ body::after {
   aspect-ratio: 3 / 4;
   object-fit: cover;
   border-radius: 50% 50% var(--radius-card) var(--radius-card);
+  /* o retrato é PNG recortado: o gradiente preenche o arco atrás dele */
+  background: linear-gradient(180deg, rgba(16, 16, 16, 0.18), rgba(16, 16, 16, 0.55));
 }
 .about-figure figcaption { text-align: center; }
 
@@ -540,6 +542,18 @@ body::after {
 }
 
 /* ---------- Serviços: cardápio de preços ---------- */
+/* arte da tabela: ocupa a mesma caixa do cardápio antigo (42rem centralizado) */
+.menu-art {
+  display: block;
+  margin: var(--space-4) auto 0;
+  width: 100%;
+  max-width: 42rem;
+  height: auto;
+  border-radius: var(--radius-card);
+  outline: 1px solid rgba(242, 201, 76, 0.18);
+  outline-offset: 6px;
+}
+
 .menu {
   margin: var(--space-4) auto 0;
   max-width: 42rem;
