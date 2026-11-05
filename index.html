@@ -20,14 +20,15 @@
   <meta name="twitter:card" content="summary_large_image">
 
   <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
-  <link rel="preload" as="image" href="img/hero-bg-2.jpg" fetchpriority="high">
+  <link rel="preload" as="image" href="img/hero-bg-2.jpg" media="(min-width: 761px)" fetchpriority="high">
+  <link rel="preload" as="image" href="img/hero-mobile.jpg" media="(max-width: 760px)" fetchpriority="high">
 
   <!-- Fontes: Anton (display) + Archivo (texto) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="css/styles.css?v=6">
+  <link rel="stylesheet" href="css/styles.css?v=7">
 
   <!-- Dados estruturados: negócio local -->
   <script type="application/ld+json">
@@ -85,9 +86,14 @@
     <!-- ============ SEÇÃO 1 — HERO ============ -->
     <section class="hero" id="inicio" aria-label="Apresentação">
       <div class="hero__media" aria-hidden="true">
-        <!-- imagem oficial do hero (contém o logotipo; no mobile o CSS
-             centraliza o letreiro da própria arte) -->
-        <img src="img/hero-bg-2.jpg" alt="" width="1672" height="941" fetchpriority="high">
+        <!-- Art direction: no mobile usamos um recorte VERTICAL já com o
+             letreiro centralizado na horizontal (hero-mobile.jpg); assim o
+             object-position: center mantém o logo centrado em QUALQUER
+             largura de celular. No desktop usamos a arte larga original. -->
+        <picture>
+          <source media="(max-width: 760px)" srcset="img/hero-mobile.jpg" width="720" height="941">
+          <img src="img/hero-bg-2.jpg" alt="" width="1672" height="941" fetchpriority="high">
+        </picture>
         <div class="hero__scrim"></div>
       </div>
       <!-- Título mantido invisível para SEO e leitores de tela -->
